@@ -22,11 +22,7 @@ ON s.member_id = f.recommendedby;
 
 --Produce a list of reservations or 10 September which will cost the member (or guest) more than $50. The guest user is always ID 0. 
 
-Select CONCAT(a.firstname, ' ' , a.surname) AS member, c.name, 
-															CASE WHEN b.member_id = 0
-																THEN c.guestcost * slots
-																ELSE c.membercost * slots
-																END AS cost
+Select CONCAT(a.firstname, ' ' , a.surname) AS member, c.name, CASE WHEN b.member_id = 0 THEN c.guestcost * slots ELSE c.membercost * slots END AS cost
 																
 From ex.affiliate a
 Inner Join ex.reservations b
